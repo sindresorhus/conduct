@@ -37,6 +37,10 @@ You can also use this to update an existing Code of Conduct.
 
 When generating a new Code of Conduct it will try to infer your email to use as contact email. If it can't, it will prompt for it. The email is persisted and only asked once. You can force update the email with `conduct --email=your@email.com`. When updating an existing Code of Conduct, it will use the existing contact email unless you pass the `--email` flag.
 
+## Code of Conduct
+
+[Contributor Code of Conduct](code-of-conduct.md). By participating in this project you agree to abide by its terms.
+
 
 ## License
 
