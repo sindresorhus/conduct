@@ -38,7 +38,7 @@ function write(filepath, email) {
 
 function generate(filepath, email) {
 	write(filepath, email);
-	console.log(`${logSymbols.success} Added a Code of Conduct to your project ❤️\n\nAdd the following to your contributing.md or readme.md:\nPlease note that this project is released with a [Contributor Code of Conduct](${filepath}). By participating in this project you agree to abide by its terms.`);
+	console.log(`${logSymbols.success} Added a Code of Conduct to your project ❤️\n\n${chalk.bold('Please carefully read this document and be ready to enforce it.')}\n\nAdd the following to your contributing.md or readme.md:\nPlease note that this project is released with a [Contributor Code of Conduct](${filepath}). By participating in this project you agree to abide by its terms.`);
 }
 
 function init() {
