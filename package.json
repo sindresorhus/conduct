@@ -1,6 +1,6 @@
 {
   "name": "conduct",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate a Code of Conduct for your project - Provided by Contributor Covenant",
   "license": "MIT",
   "repository": "sindresorhus/conduct",
