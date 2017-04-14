@@ -25,7 +25,7 @@ if (cli.flags.email) {
 function findEmail() {
 	let email;
 	try {
-		email = execa.sync('git', ['config', '--global', 'user.email']).stdout.trim();
+		email = execa.sync('git', ['config', 'user.email']).stdout.trim();
 	} catch (err) {}
 
 	return email;
