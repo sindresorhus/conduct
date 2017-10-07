@@ -22,10 +22,6 @@ const cli = meow(`
 	Options
 	  -c, --uppercase  Use all uppercase letters
 	  -u, --underscore Use undescores instead of dashes
-
-	Example
-	  $ conduct -cu
-
 `, {
 	alias: {
 		c: 'uppercase',
