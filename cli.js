@@ -14,7 +14,7 @@ const logSymbols = require('log-symbols');
 const config = new Conf();
 
 let filename = 'code-of-conduct';
-let extension = '.md';
+const extension = '.md';
 
 const cli = meow(`
 	Usage
@@ -86,13 +86,14 @@ function init() {
 		const existingSrc = fs.readFileSync(existing, 'utf8');
 		const email = Array.from(getEmails(existingSrc))[0];
 
-		if (existing !== filepath) {
-			// if the existing file is different from the
+		if (existing === filepath) {
+			write(filepath, cli.flags.email || email);
+		} else {
+			// If the existing file is different from the
 			// intended file, pass it in for removal
 			write(filepath, cli.flags.email || email, existing);
-		} else {
-			write(filepath, cli.flags.email || email);
 		}
+
 		console.log(`${logSymbols.success} Updated your Code of Conduct`);
 		return;
 	}
