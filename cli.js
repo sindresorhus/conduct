@@ -13,13 +13,36 @@ const logSymbols = require('log-symbols');
 
 const config = new Conf();
 
+let filepath = 'code-of-conduct.md';
+
 const cli = meow(`
 	Usage
 	  $ conduct
-`);
+
+	Options
+	  -c, --uppercase  Use all uppercase letters
+	  -u, --underscore Use undescores instead of dashes
+
+	Example
+	  $ conduct -cu
+
+`, {
+	alias: {
+		c: 'uppercase',
+		u: 'underscore'
+	}
+});
 
 if (cli.flags.email) {
 	config.set('email', cli.flags.email);
+}
+
+if (cli.flags.uppercase) {
+	filepath = filepath.toUpperCase();
+}
+
+if (cli.flags.underscore) {
+	filepath = filepath.replace(/-/g, '_');
 }
 
 function findEmail() {
@@ -45,21 +68,23 @@ function init() {
 	const results = globby.sync([
 		'code_of_conduct.*',
 		'code-of-conduct.*',
+		'CODE_OF_CONDUCT.*',
+		'CODE-OF-CONDUCT.*',
 		'.github/code_of_conduct.*',
-		'.github/code-of-conduct.*'
-	], {nocase: true});
+		'.github/code-of-conduct.*',
+		'.github/CODE_OF_CONDUCT.*',
+		'.github/CODE-OF-CONDUCT.*'
+	], {nocase: false});
 
 	// Update existing
 	if (results.length > 0) {
-		const filepath = results[0];
-		const existingSrc = fs.readFileSync(filepath, 'utf8');
+		const existing = results[0];
+		const existingSrc = fs.readFileSync(existing, 'utf8');
 		const email = Array.from(getEmails(existingSrc))[0];
 		write(filepath, cli.flags.email || email);
 		console.log(`${logSymbols.success} Updated your Code of Conduct`);
 		return;
 	}
-
-	const filepath = 'code-of-conduct.md';
 
 	if (config.has('email')) {
 		generate(filepath, config.get('email'));
