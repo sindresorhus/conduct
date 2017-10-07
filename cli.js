@@ -13,7 +13,8 @@ const logSymbols = require('log-symbols');
 
 const config = new Conf();
 
-let filepath = 'code-of-conduct.md';
+let filename = 'code-of-conduct';
+let extension = '.md';
 
 const cli = meow(`
 	Usage
@@ -34,12 +35,14 @@ if (cli.flags.email) {
 }
 
 if (cli.flags.uppercase) {
-	filepath = filepath.toUpperCase();
+	filename = filename.toUpperCase();
 }
 
 if (cli.flags.underscore) {
-	filepath = filepath.replace(/-/g, '_');
+	filename = filename.replace(/-/g, '_');
 }
+
+const filepath = `${filename}${extension}`;
 
 function findEmail() {
 	let email;
@@ -84,8 +87,8 @@ function init() {
 		const email = Array.from(getEmails(existingSrc))[0];
 
 		if (existing !== filepath) {
-			// if the existing file name is different from the
-			// intended file name, pass it in for removal
+			// if the existing file is different from the
+			// intended file, pass it in for removal
 			write(filepath, cli.flags.email || email, existing);
 		} else {
 			write(filepath, cli.flags.email || email);
