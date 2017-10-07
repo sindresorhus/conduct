@@ -53,7 +53,7 @@ function findEmail() {
 	return email;
 }
 
-function write(filepath, email, fileToRemove = null) {
+function write(filepath, email, fileToRemove) {
 	const src = fs.readFileSync(path.join(__dirname, 'vendor/code_of_conduct.md'), 'utf8');
 	fs.writeFileSync(filepath, src.replace('[INSERT EMAIL ADDRESS]', email));
 
@@ -86,12 +86,13 @@ function init() {
 		const existingSrc = fs.readFileSync(existing, 'utf8');
 		const email = Array.from(getEmails(existingSrc))[0];
 
-		if (existing === filepath) {
-			write(filepath, cli.flags.email || email);
-		} else {
+		if (cli.flags.underscore || cli.flags.uppercase) {
 			// If the existing file is different from the
 			// intended file, pass it in for removal
-			write(filepath, cli.flags.email || email, existing);
+			write(filepath, cli.flags.email || email, ((existing !== filepath) && existing) || null);
+		} else {
+			// Otherwise, just update the original
+			write(existing, cli.flags.email || email);
 		}
 
 		console.log(`${logSymbols.success} Updated your Code of Conduct`);
