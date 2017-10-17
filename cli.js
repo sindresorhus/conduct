@@ -21,8 +21,8 @@ const cli = meow(`
 	  $ conduct
 
 	Options
-	  --uppercase, -c   Use uppercase characters in the filename
-	  --underscore, -u  Use underscores instead of dashes in the filename
+	  --uppercase, -c   Use uppercase characters (e.g. CODE-OF-CONDUCT.md)
+	  --underscore, -u  Use underscores instead of dashes (e.g. code_of_conduct.md)
 `, {
 	alias: {
 		c: 'uppercase',
@@ -72,13 +72,9 @@ function init() {
 	const results = globby.sync([
 		'code_of_conduct.*',
 		'code-of-conduct.*',
-		'CODE_OF_CONDUCT.*',
-		'CODE-OF-CONDUCT.*',
 		'.github/code_of_conduct.*',
-		'.github/code-of-conduct.*',
-		'.github/CODE_OF_CONDUCT.*',
-		'.github/CODE-OF-CONDUCT.*'
-	], {nocase: false});
+		'.github/code-of-conduct.*'
+	], {nocase: true});
 
 	// Update existing
 	if (results.length > 0) {
@@ -89,7 +85,7 @@ function init() {
 		if (cli.flags.underscore || cli.flags.uppercase) {
 			// If the existing file is different from the
 			// intended file, pass it in for removal
-			write(filepath, cli.flags.email || email, ((existing !== filepath) && existing) || null);
+			write(filepath, cli.flags.email || email, existing !== filepath && existing);
 		} else {
 			// Otherwise, just update the original
 			write(existing, cli.flags.email || email);
