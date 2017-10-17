@@ -21,8 +21,8 @@ const cli = meow(`
 	  $ conduct
 
 	Options
-	  -c, --uppercase  Use all uppercase letters
-	  -u, --underscore Use undescores instead of dashes
+	  --uppercase, -c   Use uppercase characters in the filename
+	  --underscore, -u  Use underscores instead of dashes in the filename
 `, {
 	alias: {
 		c: 'uppercase',
