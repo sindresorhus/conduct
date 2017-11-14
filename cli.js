@@ -11,7 +11,11 @@ const Conf = require('conf');
 const execa = require('execa');
 const logSymbols = require('log-symbols');
 
-const config = new Conf();
+const config = new Conf({
+	defaults: {
+		language: 'en'
+	}
+});
 
 const cli = meow(`
 	Usage
@@ -20,6 +24,24 @@ const cli = meow(`
 
 if (cli.flags.email) {
 	config.set('email', cli.flags.email);
+}
+
+if (typeof cli.flags.language === 'string') {
+	const language = cli.flags.language.toLowerCase();
+	const availableLanguages = loadLanguages();
+
+	if (!availableLanguages.has(language)) {
+		console.error(`${logSymbols.error} Unsupported language '${language}' was provided. Conduct currently supports:\n\n${Array.from(availableLanguages).sort().join(', ')}`);
+		process.exit(1);
+	}
+
+	config.set('language', language);
+}
+
+function loadLanguages() {
+	const files = fs.readdirSync(path.join(__dirname, '/vendor'));
+	const languages = files.map(file => file.match(/\.([a-z-]+)\.md/)[1]);
+	return new Set(languages);
 }
 
 function findEmail() {
@@ -32,7 +54,8 @@ function findEmail() {
 }
 
 function write(filepath, email) {
-	const src = fs.readFileSync(path.join(__dirname, 'vendor/code_of_conduct.md'), 'utf8');
+	const target = `vendor/code-of-conduct.${config.get('language')}.md`;
+	const src = fs.readFileSync(path.join(__dirname, target), 'utf8');
 	fs.writeFileSync(filepath, src.replace('[INSERT EMAIL ADDRESS]', email));
 }
 

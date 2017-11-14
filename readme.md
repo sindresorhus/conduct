@@ -35,8 +35,15 @@ $ conduct
 
 You can also use this to update an existing Code of Conduct.
 
+### options
+
+#### email
+
 When generating a new Code of Conduct it will try to infer your email to use as contact email. If it can't, it will prompt for it. The email is persisted and only asked once. You can force update the email with `conduct --email=your@email.com`. When updating an existing Code of Conduct, it will use the existing contact email unless you pass the `--email` flag.
 
+#### language
+
+The language of the Code of Conduct can be set with `conduct --language=en`. The language is persisted and can be updated by passing the `--language` flag at any time. See the [vendor](/vendor) folder for all available languages. The default is '`en`' for English.
 
 ## Code of Conduct
 

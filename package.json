@@ -16,7 +16,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava -s"
   },
   "files": [
     "cli.js",
