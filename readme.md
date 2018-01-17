@@ -1,6 +1,6 @@
 # conduct [![Build Status](https://travis-ci.org/sindresorhus/conduct.svg?branch=master)](https://travis-ci.org/sindresorhus/conduct)
 
-> Generate a Code of Conduct for your project - Provided by [Contributor Covenant](http://contributor-covenant.org)
+> Generate a Code of Conduct for your project - Provided by [Contributor Covenant](https://contributor-covenant.org)
 
 <img src="screenshot.png" width="1153">
 
@@ -17,7 +17,7 @@ tl;dr Having a Code of Conduct is helpful in fostering and enforcing a friendly 
 
 > Do not simply add the Contributor Covenant to your project and assume that any problems with civility, harassment, or discrimination will be solved.
 
-> — http://contributor-covenant.org
+> — https://contributor-covenant.org
 
 
 ## Install
