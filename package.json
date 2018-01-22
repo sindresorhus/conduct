@@ -48,7 +48,7 @@
     "get-emails": "^2.0.0",
     "globby": "^6.1.0",
     "inquirer": "^3.0.6",
-    "log-symbols": "^1.0.2",
+    "log-symbols": "^2.2.0",
     "meow": "^3.7.0"
   },
   "devDependencies": {
