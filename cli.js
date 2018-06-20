@@ -24,21 +24,31 @@ const cli = meow(`
 	  --uppercase, -c   Use uppercase characters (e.g. CODE-OF-CONDUCT.md)
 	  --underscore, -u  Use underscores instead of dashes (e.g. code_of_conduct.md)
 `, {
-	alias: {
-		c: 'uppercase',
-		u: 'underscore'
+	flags: {
+		uppercase: {
+			type: 'boolean',
+			default: false,
+			alias: 'c'
+		},
+		underscore: {
+			type: 'boolean',
+			default: false,
+			alias: 'u'
+		}
 	}
 });
 
-if (cli.flags.email) {
-	config.set('email', cli.flags.email);
+const {flags} = cli;
+
+if (flags.email) {
+	config.set('email', flags.email);
 }
 
-if (cli.flags.uppercase) {
+if (flags.uppercase) {
 	filename = filename.toUpperCase();
 }
 
-if (cli.flags.underscore) {
+if (flags.underscore) {
 	filename = filename.replace(/-/g, '_');
 }
 
@@ -48,7 +58,7 @@ function findEmail() {
 	let email;
 	try {
 		email = execa.sync('git', ['config', 'user.email']).stdout.trim();
-	} catch (err) {}
+	} catch (_) {}
 
 	return email;
 }
@@ -68,7 +78,7 @@ function generate(filepath, email) {
 	console.log(`${logSymbols.success} Added a Code of Conduct to your project ❤️\n\n${chalk.bold('Please carefully read this document and be ready to enforce it.')}\n\nAdd the following to your contributing.md or readme.md:\nPlease note that this project is released with a [Contributor Code of Conduct](${filepath}). By participating in this project you agree to abide by its terms.`);
 }
 
-function init() {
+async function init() {
 	const results = globby.sync([
 		'code_of_conduct.*',
 		'code-of-conduct.*',
@@ -78,9 +88,9 @@ function init() {
 
 	// Update existing
 	if (results.length > 0) {
-		const existing = results[0];
+		const [existing] = results;
 		const existingSrc = fs.readFileSync(existing, 'utf8');
-		const email = Array.from(getEmails(existingSrc))[0];
+		const [email] = [...getEmails(existingSrc)];
 
 		if (cli.flags.underscore || cli.flags.uppercase) {
 			// If the existing file is different from the
@@ -108,14 +118,13 @@ function init() {
 	}
 
 	if (process.stdout.isTTY) {
-		inquirer.prompt([{
+		const answers = await inquirer.prompt([{
 			type: 'input',
 			name: 'email',
 			message: `Couldn't infer your email. Please enter your email:`,
 			validate: x => x.includes('@')
-		}]).then(answers => {
-			generate(filepath, answers.email);
-		});
+		}]);
+		generate(filepath, answers.email);
 	} else {
 		console.error(`Run \`${chalk.cyan('conduct --email=your@email.com')}\` once to save your email.`);
 		process.exit(1);

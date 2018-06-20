@@ -1,59 +1,59 @@
 {
-  "name": "conduct",
-  "version": "1.0.2",
-  "description": "Generate a Code of Conduct for your project - Provided by Contributor Covenant",
-  "license": "MIT",
-  "repository": "sindresorhus/conduct",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "bin": {
-    "conduct": "cli.js"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "cli.js",
-    "vendor"
-  ],
-  "keywords": [
-    "cli-app",
-    "cli",
-    "code",
-    "conduct",
-    "code-of-conduct",
-    "contributing",
-    "contributor",
-    "covenant",
-    "friendly",
-    "inclusive",
-    "open",
-    "source",
-    "open-source",
-    "oss",
-    "generate",
-    "scaffold",
-    "create"
-  ],
-  "dependencies": {
-    "chalk": "^1.1.3",
-    "conf": "^0.12.0",
-    "execa": "^0.6.3",
-    "get-emails": "^2.0.0",
-    "globby": "^6.1.0",
-    "inquirer": "^3.0.6",
-    "log-symbols": "^2.2.0",
-    "meow": "^3.7.0"
-  },
-  "devDependencies": {
-    "ava": "*",
-    "tempy": "^0.1.0",
-    "xo": "*"
-  }
+	"name": "conduct",
+	"version": "1.0.2",
+	"description": "Generate a Code of Conduct for your project - Provided by Contributor Covenant",
+	"license": "MIT",
+	"repository": "sindresorhus/conduct",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"bin": {
+		"conduct": "cli.js"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"cli.js",
+		"vendor"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		"code",
+		"conduct",
+		"code-of-conduct",
+		"contributing",
+		"contributor",
+		"covenant",
+		"friendly",
+		"inclusive",
+		"open",
+		"source",
+		"open-source",
+		"oss",
+		"generate",
+		"scaffold",
+		"create"
+	],
+	"dependencies": {
+		"chalk": "^2.4.1",
+		"conf": "^2.0.0",
+		"execa": "^0.10.0",
+		"get-emails": "^2.0.0",
+		"globby": "^8.0.1",
+		"inquirer": "^6.0.0",
+		"log-symbols": "^2.2.0",
+		"meow": "^5.0.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"tempy": "^0.2.1",
+		"xo": "*"
+	}
 }
