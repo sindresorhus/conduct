@@ -26,7 +26,7 @@ test('update', async t => {
 	t.true(src.includes('fixture@bar.com'));
 });
 
-test('filename lowercase', async t => {
+test('readme filename', async t => {
 	const cwd = tempy.directory();
 	const filepath = path.join(cwd, 'readme.md');
 	fs.writeFileSync(filepath);
@@ -35,11 +35,18 @@ test('filename lowercase', async t => {
 	t.is(path.parse(generatedFile).base, 'code-of-conduct.md');
 });
 
-test('filename uppercase', async t => {
+test('README filename', async t => {
 	const cwd = tempy.directory();
 	const filepath = path.join(cwd, 'README.md');
 	fs.writeFileSync(filepath);
 	await execa(bin, {cwd});
+	const generatedFile = globby.sync(path.join(cwd, 'CODE-OF-CONDUCT.md'))[0];
+	t.is(path.parse(generatedFile).base, 'CODE-OF-CONDUCT.md');
+});
+
+test('filename --uppercase', async t => {
+	const cwd = tempy.directory();
+	await execa(bin, ['--uppercase'], {cwd});
 	const generatedFile = globby.sync(path.join(cwd, 'CODE-OF-CONDUCT.md'))[0];
 	t.is(path.parse(generatedFile).base, 'CODE-OF-CONDUCT.md');
 });
