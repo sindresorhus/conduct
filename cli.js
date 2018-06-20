@@ -48,6 +48,19 @@ if (flags.uppercase) {
 	filename = filename.toUpperCase();
 }
 
+function readmeIsUpperCase() {
+	const results = globby.sync('readme.*', {nocase: true});
+	if (results.length > 0) {
+		const fileObj = path.parse(results[0]);
+		return fileObj.name.toUpperCase() === fileObj.name;
+	}
+	return false;
+}
+
+if (readmeIsUpperCase()) {
+	filename = filename.toUpperCase();
+}
+
 if (flags.underscore) {
 	filename = filename.replace(/-/g, '_');
 }
