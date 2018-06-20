@@ -13,14 +13,36 @@ const logSymbols = require('log-symbols');
 
 const config = new Conf();
 
+let filename = 'code-of-conduct';
+const extension = '.md';
+
 const cli = meow(`
 	Usage
 	  $ conduct
-`);
+
+	Options
+	  --uppercase, -c   Use uppercase characters (e.g. CODE-OF-CONDUCT.md)
+	  --underscore, -u  Use underscores instead of dashes (e.g. code_of_conduct.md)
+`, {
+	alias: {
+		c: 'uppercase',
+		u: 'underscore'
+	}
+});
 
 if (cli.flags.email) {
 	config.set('email', cli.flags.email);
 }
+
+if (cli.flags.uppercase) {
+	filename = filename.toUpperCase();
+}
+
+if (cli.flags.underscore) {
+	filename = filename.replace(/-/g, '_');
+}
+
+const filepath = `${filename}${extension}`;
 
 function findEmail() {
 	let email;
@@ -31,9 +53,14 @@ function findEmail() {
 	return email;
 }
 
-function write(filepath, email) {
+function write(filepath, email, fileToRemove) {
 	const src = fs.readFileSync(path.join(__dirname, 'vendor/code_of_conduct.md'), 'utf8');
 	fs.writeFileSync(filepath, src.replace('[INSERT EMAIL ADDRESS]', email));
+
+	if (fileToRemove) {
+		fs.unlinkSync(fileToRemove);
+		console.log(`${logSymbols.warning} Deleted ${fileToRemove}`);
+	}
 }
 
 function generate(filepath, email) {
@@ -51,15 +78,22 @@ function init() {
 
 	// Update existing
 	if (results.length > 0) {
-		const filepath = results[0];
-		const existingSrc = fs.readFileSync(filepath, 'utf8');
+		const existing = results[0];
+		const existingSrc = fs.readFileSync(existing, 'utf8');
 		const email = Array.from(getEmails(existingSrc))[0];
-		write(filepath, cli.flags.email || email);
+
+		if (cli.flags.underscore || cli.flags.uppercase) {
+			// If the existing file is different from the
+			// intended file, pass it in for removal
+			write(filepath, cli.flags.email || email, existing !== filepath && existing);
+		} else {
+			// Otherwise, just update the original
+			write(existing, cli.flags.email || email);
+		}
+
 		console.log(`${logSymbols.success} Updated your Code of Conduct`);
 		return;
 	}
-
-	const filepath = 'code-of-conduct.md';
 
 	if (config.has('email')) {
 		generate(filepath, config.get('email'));

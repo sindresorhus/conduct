@@ -30,7 +30,12 @@ $ npm install --global conduct
 ## Usage
 
 ```
-$ conduct
+Usage
+  $ conduct
+
+Options
+  --uppercase, -c   Use uppercase characters (e.g. CODE-OF-CONDUCT.md)
+  --underscore, -u  Use underscores instead of dashes (e.g. code_of_conduct.md)
 ```
 
 You can also use this to update an existing Code of Conduct.
