@@ -8,7 +8,7 @@ import tempy from 'tempy';
 const bin = path.join(__dirname, 'cli.js');
 const fixture = fs.readFileSync(path.join(__dirname, 'fixtures/code-of-conduct.md'), 'utf8');
 
-test('generate', async t => {
+test.serial('generate', async t => {
 	const cwd = tempy.directory();
 	await execa(bin, ['--email=foo@bar.com'], {cwd});
 	const src = fs.readFileSync(path.join(cwd, 'code-of-conduct.md'), 'utf8');
