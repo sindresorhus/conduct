@@ -8,6 +8,10 @@ import tempy from 'tempy';
 const bin = path.join(__dirname, 'cli.js');
 const fixture = fs.readFileSync(path.join(__dirname, 'fixtures/code-of-conduct.md'), 'utf8');
 
+const setLanguage = async (language, cwd) => {
+	return execa(bin, [`--language=${language}`], {cwd});
+};
+
 // It's serial as it's affected by the `update` test:
 // https://github.com/sindresorhus/conduct/pull/12/files#r209551337
 test.serial('generate', async t => {
@@ -51,4 +55,31 @@ test('filename --uppercase', async t => {
 	await execa(bin, ['--uppercase'], {cwd});
 	const generatedFile = globby.sync(path.join(cwd, 'CODE-OF-CONDUCT.md'))[0];
 	t.is(path.parse(generatedFile).base, 'CODE-OF-CONDUCT.md');
+});
+
+test.serial('set language', async t => {
+	const cwd = tempy.directory();
+	await setLanguage('es', cwd);
+	const src = fs.readFileSync(path.join(cwd, 'code-of-conduct.md'), 'utf8');
+	t.true(src.includes('En el interés de fomentar'));
+
+	// Cleanup
+	await setLanguage('en', cwd);
+});
+
+test.serial('unsupported language', async t => {
+	const cwd = tempy.directory();
+	await t.throwsAsync(setLanguage('unicorn', cwd), /Unsupported language 'unicorn'/);
+});
+
+test.serial('update language', async t => {
+	const cwd = tempy.directory();
+	const filepath = path.join(cwd, 'CODE_OF_CONDUCT.markdown');
+	fs.writeFileSync(filepath, fixture);
+	await setLanguage('es', cwd);
+	const src = fs.readFileSync(filepath, 'utf8');
+	t.true(src.includes('En el interés de fomentar'));
+
+	// Cleanup
+	await setLanguage('en', cwd);
 });
