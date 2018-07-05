@@ -38,16 +38,6 @@ const cli = meow(`
 	}
 });
 
-const {flags} = cli;
-
-if (flags.email) {
-	config.set('email', flags.email);
-}
-
-if (flags.uppercase) {
-	filename = filename.toUpperCase();
-}
-
 function readmeIsUpperCase() {
 	const results = globby.sync('readme.*', {nocase: true});
 	if (results.length > 0) {
@@ -57,7 +47,13 @@ function readmeIsUpperCase() {
 	return false;
 }
 
-if (readmeIsUpperCase()) {
+const {flags} = cli;
+
+if (flags.email) {
+	config.set('email', flags.email);
+}
+
+if (flags.uppercase || readmeIsUpperCase()) {
 	filename = filename.toUpperCase();
 }
 
