@@ -8,6 +8,8 @@ import tempy from 'tempy';
 const bin = path.join(__dirname, 'cli.js');
 const fixture = fs.readFileSync(path.join(__dirname, 'fixtures/code-of-conduct.md'), 'utf8');
 
+// It's serial as it's affected by the `update` test:
+// https://github.com/sindresorhus/conduct/pull/12/files#r209551337
 test.serial('generate', async t => {
 	const cwd = tempy.directory();
 	await execa(bin, ['--email=foo@bar.com'], {cwd});
