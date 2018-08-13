@@ -39,7 +39,7 @@ const cli = meow(`
 });
 
 function readmeIsUpperCase() {
-	const results = globby.sync('readme.*', {nocase: true});
+	const results = globby.sync('readme.*', {case: false});
 	if (results.length > 0) {
 		const fileObj = path.parse(results[0]);
 		return fileObj.name.toUpperCase() === fileObj.name;
