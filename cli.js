@@ -38,13 +38,22 @@ const cli = meow(`
 	}
 });
 
+function readmeIsUpperCase() {
+	const results = globby.sync('readme.*', {case: false});
+	if (results.length > 0) {
+		const fileObj = path.parse(results[0]);
+		return fileObj.name.toUpperCase() === fileObj.name;
+	}
+	return false;
+}
+
 const {flags} = cli;
 
 if (flags.email) {
 	config.set('email', flags.email);
 }
 
-if (flags.uppercase) {
+if (flags.uppercase || readmeIsUpperCase()) {
 	filename = filename.toUpperCase();
 }
 
