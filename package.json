@@ -52,7 +52,7 @@
 		"meow": "^5.0.0"
 	},
 	"devDependencies": {
-		"ava": "*",
+		"ava": "^1.0.0-beta.7",
 		"tempy": "^0.2.1",
 		"xo": "*"
 	}

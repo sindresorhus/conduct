@@ -11,7 +11,11 @@ const Conf = require('conf');
 const execa = require('execa');
 const logSymbols = require('log-symbols');
 
-const config = new Conf();
+const config = new Conf({
+	defaults: {
+		language: 'en'
+	}
+});
 
 let filename = 'code-of-conduct';
 const extension = '.md';
@@ -61,7 +65,25 @@ if (flags.underscore) {
 	filename = filename.replace(/-/g, '_');
 }
 
+if (typeof flags.language === 'string') {
+	const language = flags.language.toLowerCase();
+	const availableLanguages = loadLanguages();
+
+	if (!availableLanguages.has(language)) {
+		console.error(`${logSymbols.error} Unsupported language '${language}' was provided. Conduct currently supports:\n\n${[...availableLanguages].sort().join(', ')}`);
+		process.exit(1);
+	}
+
+	config.set('language', language);
+}
+
 const filepath = `${filename}${extension}`;
+
+function loadLanguages() {
+	const vendorFiles = fs.readdirSync(path.join(__dirname, 'vendor'));
+	const languages = vendorFiles.map(file => file.match(/\.([a-z-]+)\.md/)[1]);
+	return new Set(languages);
+}
 
 function findEmail() {
 	let email;
@@ -73,7 +95,8 @@ function findEmail() {
 }
 
 function write(filepath, email, fileToRemove) {
-	const src = fs.readFileSync(path.join(__dirname, 'vendor/code_of_conduct.md'), 'utf8');
+	const target = `vendor/code-of-conduct.${config.get('language')}.md`;
+	const src = fs.readFileSync(path.join(__dirname, target), 'utf8');
 	fs.writeFileSync(filepath, src.replace('[INSERT EMAIL ADDRESS]', email));
 
 	if (fileToRemove) {
