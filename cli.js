@@ -24,9 +24,13 @@ const cli = meow(`
 	Usage
 	  $ conduct
 
+	Example
+	  $ conduct --language=de
+
 	Options
 	  --uppercase, -c   Use uppercase characters (e.g. CODE-OF-CONDUCT.md)
 	  --underscore, -u  Use underscores instead of dashes (e.g. code_of_conduct.md)
+	  --language, -l    The language of the Code of Conduct [Default: en]
 `, {
 	flags: {
 		uppercase: {
@@ -38,6 +42,10 @@ const cli = meow(`
 			type: 'boolean',
 			default: false,
 			alias: 'u'
+		},
+		language: {
+			type: 'string',
+			alias: 'l'
 		}
 	}
 });
