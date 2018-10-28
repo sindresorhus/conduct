@@ -10,6 +10,7 @@ const chalk = require('chalk');
 const Conf = require('conf');
 const execa = require('execa');
 const logSymbols = require('log-symbols');
+const makeDir = require('make-dir');
 
 const config = new Conf({
 	defaults: {
@@ -111,6 +112,7 @@ function findEmail() {
 function write(filepath, email, fileToRemove) {
 	const target = `vendor/code-of-conduct.${config.get('language')}.md`;
 	const src = fs.readFileSync(path.join(__dirname, target), 'utf8');
+	makeDir.sync(path.dirname(filepath));
 	fs.writeFileSync(filepath, src.replace('[INSERT EMAIL ADDRESS]', email));
 
 	if (fileToRemove) {

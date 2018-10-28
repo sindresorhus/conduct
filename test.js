@@ -92,3 +92,11 @@ test.serial('generate with directory', async t => {
 	t.true(src.includes('In the interest of fostering'));
 	t.true(src.includes('foo@bar.com'));
 });
+
+test.serial('generate with directory (directory missing)', async t => {
+	const cwd = tempy.directory();
+	await execa(bin, ['--email=foo@bar.com', '--directory=test'], {cwd});
+	const src = fs.readFileSync(path.join(cwd, 'test', 'code-of-conduct.md'), 'utf8');
+	t.true(src.includes('In the interest of fostering'));
+	t.true(src.includes('foo@bar.com'));
+});
