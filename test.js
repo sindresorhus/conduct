@@ -83,3 +83,12 @@ test.serial('update language', async t => {
 	// Cleanup
 	await setLanguage('en', cwd);
 });
+
+test.serial('generate with directory', async t => {
+	const cwd = tempy.directory();
+	fs.mkdirSync(path.join(cwd, 'test'));
+	await execa(bin, ['--email=foo@bar.com', '--directory=test'], {cwd});
+	const src = fs.readFileSync(path.join(cwd, 'test', 'code-of-conduct.md'), 'utf8');
+	t.true(src.includes('In the interest of fostering'));
+	t.true(src.includes('foo@bar.com'));
+});
