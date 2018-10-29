@@ -8,7 +8,7 @@ import tempy from 'tempy';
 const bin = path.join(__dirname, 'cli.js');
 const fixture = fs.readFileSync(path.join(__dirname, 'fixtures/code-of-conduct.md'), 'utf8');
 
-const setLanguage = async (language, cwd) => {
+const setLanguage = (language, cwd) => {
 	return execa(bin, [`--language=${language}`], {cwd});
 };
 

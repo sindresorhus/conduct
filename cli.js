@@ -169,7 +169,7 @@ async function init() {
 		const answers = await inquirer.prompt([{
 			type: 'input',
 			name: 'email',
-			message: `Couldn't infer your email. Please enter your email:`,
+			message: 'Couldn\'t infer your email. Please enter your email:',
 			validate: x => x.includes('@')
 		}]);
 		generate(filePath, answers.email);
