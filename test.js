@@ -8,7 +8,7 @@ import tempy from 'tempy';
 const bin = path.join(__dirname, 'cli.js');
 const fixture = fs.readFileSync(path.join(__dirname, 'fixtures/code-of-conduct.md'), 'utf8');
 
-const setLanguage = async (language, cwd) => {
+const setLanguage = (language, cwd) => {
 	return execa(bin, [`--language=${language}`], {cwd});
 };
 
@@ -82,4 +82,21 @@ test.serial('update language', async t => {
 
 	// Cleanup
 	await setLanguage('en', cwd);
+});
+
+test.serial('generate with directory', async t => {
+	const cwd = tempy.directory();
+	fs.mkdirSync(path.join(cwd, 'test'));
+	await execa(bin, ['--email=foo@bar.com', '--directory=test'], {cwd});
+	const src = fs.readFileSync(path.join(cwd, 'test', 'code-of-conduct.md'), 'utf8');
+	t.true(src.includes('In the interest of fostering'));
+	t.true(src.includes('foo@bar.com'));
+});
+
+test.serial('generate with directory (directory missing)', async t => {
+	const cwd = tempy.directory();
+	await execa(bin, ['--email=foo@bar.com', '--directory=test'], {cwd});
+	const src = fs.readFileSync(path.join(cwd, 'test', 'code-of-conduct.md'), 'utf8');
+	t.true(src.includes('In the interest of fostering'));
+	t.true(src.includes('foo@bar.com'));
 });

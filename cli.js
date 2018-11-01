@@ -10,6 +10,7 @@ const chalk = require('chalk');
 const Conf = require('conf');
 const execa = require('execa');
 const logSymbols = require('log-symbols');
+const makeDir = require('make-dir');
 
 const config = new Conf({
 	defaults: {
@@ -31,6 +32,7 @@ const cli = meow(`
 	  --uppercase, -c   Use uppercase characters (e.g. CODE-OF-CONDUCT.md)
 	  --underscore, -u  Use underscores instead of dashes (e.g. code_of_conduct.md)
 	  --language, -l    The language of the Code of Conduct [Default: en]
+	  --directory, -d   The output directory [Default: .]
 `, {
 	flags: {
 		uppercase: {
@@ -46,6 +48,11 @@ const cli = meow(`
 		language: {
 			type: 'string',
 			alias: 'l'
+		},
+		directory: {
+			type: 'string',
+			default: '.',
+			alias: 'd'
 		}
 	}
 });
@@ -85,7 +92,7 @@ if (typeof flags.language === 'string') {
 	config.set('language', language);
 }
 
-const filepath = `${filename}${extension}`;
+const filePath = path.join(flags.directory, `${filename}${extension}`);
 
 function loadLanguages() {
 	const vendorFiles = fs.readdirSync(path.join(__dirname, 'vendor'));
@@ -105,6 +112,7 @@ function findEmail() {
 function write(filepath, email, fileToRemove) {
 	const target = `vendor/code-of-conduct.${config.get('language')}.md`;
 	const src = fs.readFileSync(path.join(__dirname, target), 'utf8');
+	makeDir.sync(path.dirname(filepath));
 	fs.writeFileSync(filepath, src.replace('[INSERT EMAIL ADDRESS]', email));
 
 	if (fileToRemove) {
@@ -120,10 +128,10 @@ function generate(filepath, email) {
 
 async function init() {
 	const results = globby.sync([
-		'code_of_conduct.*',
-		'code-of-conduct.*',
-		'.github/code_of_conduct.*',
-		'.github/code-of-conduct.*'
+		path.posix.join(flags.directory, 'code_of_conduct.*'),
+		path.posix.join(flags.directory, 'code-of-conduct.*'),
+		path.posix.join(flags.directory, '.github', 'code_of_conduct.*'),
+		path.posix.join(flags.directory, '.github', 'code-of-conduct.*')
 	], {nocase: true});
 
 	// Update existing
@@ -135,7 +143,7 @@ async function init() {
 		if (cli.flags.underscore || cli.flags.uppercase) {
 			// If the existing file is different from the
 			// intended file, pass it in for removal
-			write(filepath, cli.flags.email || email, existing !== filepath && existing);
+			write(filePath, cli.flags.email || email, existing !== filePath && existing);
 		} else {
 			// Otherwise, just update the original
 			write(existing, cli.flags.email || email);
@@ -146,14 +154,14 @@ async function init() {
 	}
 
 	if (config.has('email')) {
-		generate(filepath, config.get('email'));
+		generate(filePath, config.get('email'));
 		return;
 	}
 
 	const email = findEmail();
 	if (email) {
 		config.set('email', email);
-		generate(filepath, email);
+		generate(filePath, email);
 		return;
 	}
 
@@ -161,10 +169,10 @@ async function init() {
 		const answers = await inquirer.prompt([{
 			type: 'input',
 			name: 'email',
-			message: `Couldn't infer your email. Please enter your email:`,
+			message: 'Couldn\'t infer your email. Please enter your email:',
 			validate: x => x.includes('@')
 		}]);
-		generate(filepath, answers.email);
+		generate(filePath, answers.email);
 	} else {
 		console.error(`Run \`${chalk.cyan('conduct --email=your@email.com')}\` once to save your email.`);
 		process.exit(1);
