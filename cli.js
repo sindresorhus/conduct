@@ -63,6 +63,7 @@ function readmeIsUpperCase() {
 		const fileObj = path.parse(results[0]);
 		return fileObj.name.toUpperCase() === fileObj.name;
 	}
+
 	return false;
 }
 
