@@ -62,4 +62,4 @@ Kode Etik ini diadaptasi dari [Contributor Covenant][homepage], versi 1.4,
 tersedia di [https://www.contributor-covenant.org/version/1/4/code-of-conduct.html][version]
 
 [homepage]: https://www.contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/4/
+[version]: https://contributor-covenant.org/version/1/4/
