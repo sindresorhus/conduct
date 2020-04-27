@@ -1,9 +1,8 @@
-# conduct [![Build Status](https://travis-ci.org/sindresorhus/conduct.svg?branch=master)](https://travis-ci.org/sindresorhus/conduct)
+# conduct [![Build Status](https://travis-ci.com/sindresorhus/conduct.svg?branch=master)](https://travis-ci.com/sindresorhus/conduct)
 
 > Generate a Code of Conduct for your project - Provided by [Contributor Covenant](https://contributor-covenant.org)
 
 <img src="screenshot.png" width="1153">
-
 
 ## Why have a Code of Conduct?
 
@@ -19,13 +18,11 @@ tl;dr Having a Code of Conduct is helpful in fostering and enforcing a friendly 
 
 > — https://contributor-covenant.org
 
-
 ## Install
 
 ```
 $ npm install --global conduct
 ```
-
 
 ## Usage
 
@@ -60,12 +57,6 @@ When generating a new Code of Conduct it will try to infer your email to use as 
 
 The language of the Code of Conduct can be set with `conduct --language=en`. The language is persisted and can be updated by passing the `--language` flag at any time. See the [vendor](/vendor) folder for all available languages. The default is '`en`' for English.
 
-
 ## Code of Conduct
 
 [Contributor Code of Conduct](code-of-conduct.md). By participating in this project you agree to abide by its terms.
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)

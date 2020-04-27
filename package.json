@@ -4,10 +4,11 @@
 	"description": "Generate a Code of Conduct for your project - Provided by Contributor Covenant",
 	"license": "MIT",
 	"repository": "sindresorhus/conduct",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"bin": {
 		"conduct": "cli.js"
