@@ -32,7 +32,7 @@ const cli = meow(`
 	  --uppercase, -c   Use uppercase characters (e.g. CODE-OF-CONDUCT.md)
 	  --underscore, -u  Use underscores instead of dashes (e.g. code_of_conduct.md)
 	  --language, -l    The language of the Code of Conduct [Default: en]
-		--directory, -d   The output directory [Default: .]
+	  --directory, -d   The output directory [Default: .]
 `, {
 	flags: {
 		uppercase: {
