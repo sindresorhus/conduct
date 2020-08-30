@@ -1,7 +1,3 @@
-+++
-version = "1.4"
-aliases = ["/version/1/4/el"]
-+++
 
 # Κώδικας δεοντολογίας «Contributor Covenant»
 

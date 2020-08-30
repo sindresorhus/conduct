@@ -1,65 +1,132 @@
-+++
-version = "1.4"
-aliases = ["/version/1/4"]
-+++
 
 # Kode Etik Contributor Covenant
 
 ## Ikrar Kami
 
-Dalam minat kami untuk menumbuhkan lingkungan yang terbuka dan ramah, kami sebagai
-kontributor dan pengelola berjanji untuk membuat partisipasi dalam proyek kami
-dan komunitas kami bebas dari pelecehan bagi semua orang, tanpa memandang usia,
-ukuran tubuh, disabilitas, kelompok etnis, identitas gender dan ekspresinya, tingkat pengalaman, pendidikan, status sosial ekonomi, kewarganegaraan, penampilan pribadi, ras, agama, atau identitas dan orientasi seksual.
+Kami sebagai anggota, kontributor, dan pengelola berikrar untuk membuat
+partisipasi dalam komunitas kami terbebas dari pelecehan bagi semua orang,
+tanpa memandang usia, ukuran tubuh, disabilitas yang tampak maupun tidak,
+kelompok etnis, karakteristik seksual, identitas gender dan ekspresinya, tingkat
+pengalaman, pendidikan, status sosial ekonomi, kewarganegaraan, penampilan
+pribadi, ras, agama, atau identitas dan orientasi seksual.
+
+Kami berjanji untuk bertingkah dan berinteraksi dalam langkah komunitas yang
+terbuka, ramah, inklusif, dan sehat.
 
 ## Standar Kami
 
-Contoh perilaku dalam berkontribusi yang baik untuk menciptakan sebuah lingkungan yang positif meliputi :
+Contoh perilaku yang berkontribusi memberi dampak yang positif dalam
+komunitas kami meliputi:
 
-* Memakai bahasa yang ramah dan inklusif
-* Menghormati sudut pandang dan pengalaman yang berbeda
-* Menerima kritik konstruktif dengan baik
-* Fokus terhadap apa yang terbaik bagi komunitas
-* Menunjukkan empati kepada anggota komunitas yang lain
+* Menunjukkan rasa empati dan kebaikan kepada orang lain
+* Menghormati opini, pandangan, dan pengalaman yang berbeda
+* Memberikan dan menerima secara sopan umpan balik yang konstruktif
+* Menerima tanggung jawab dan meminta maaf kepada yang terdampak dari kesalahan
+  kita, dan belajar dari pengalaman
+* Fokus terhadap apa yang terbaik tidak hanya untuk diri pribadi, tetapi untuk
+  keseluruhan komunitas
 
-Contoh perilaku yang tidak dapat diterima oleh partisipan meliputi :
+Contoh perilaku yang tidak dapat diterima meliputi:
 
-* Penggunaan bahasa atau citra seksual dan perhatian seksual yang tidak diinginkan.
-* Trolling, komentar menghina/merendahkan, dan serangan terhadap individual atau pandangan politik.
-* Pelecahan secara umum atau pribadi
-* Menerbitkan informasi pribadi orang lain, seperti alamat fisik atau elektronik, tanpa izin.
-* Perilaku lain yang secara wajar dapat dianggap tidak sesuai dalam lingkungan profesional
+* Penggunaan bahasa atau citra seksual, dan sorotan bernada seksual atau rayuan
+  dalam bentuk apapun
+* Mengejek, mencaci maki atau komentar yang menghina / merendahkan, dan serangan terhadap
+  individual atau politik
+* Pelecehan secara umum atau pribadi
+* Memuat informasi pribadi orang lain, seperti alamat fisik atau surel,
+  tanpa persejutuan orang tersebut
+* Perilaku lainnya yang secara wajar dapat dianggap tidak sesuai dalam
+  lingkungan profesional
 
-## Tanggung Jawab Kami
+## Tanggung Jawab Lingkungan
 
-Pengelola proyek bertanggung jawab untuk mengklarifikasi standar perilaku yang dapat diterima dan diharapkan untuk melakukan tindakan korektif yang tepat dan adil dalam menanggapi setiap kasus perilaku yang tidak dapat diterima.
+Pengelola komunitas bertanggung jawab untuk mengklarifikasi dan penerapan
+standar perilaku yang dapat diterima, dan diharapkan melakukan tindakan
+korektif yang tepat dan adil, dalam menanggapi setiap kasus perilaku yang dianggap
+tidak dapat diterima, mengancam, ofensif, atau membahayakan.
 
-Pengelola proyek mempunyai hak dan tanggung jawab untuk menghapus, mengedit, atau
-menolak komentar, commit, kode, suntingan wiki, isu, dan kontribusi lainnya
-yang tidak sesuai dengan Kode Etik ini, atau untuk melarang sementara
-atau secara permanen, berkontribusi dalam hal perilaku lain yang di anggap tidak pantas, mengancam, menyinggung, atau berbahaya.
+Pengelola komunitas mempunyai hak dan tanggung jawab untuk menghapus, mengubah,
+atau menolak komentar, *commit*, kode, suntingan wiki, isu, dan kontribusi lainnya
+yang tidak sesuai dengan Kode Etik ini, dan akan mengomunikasikan alasan
+keputusan moderasi bila diperlukan.
 
 ## Lingkup
 
-Kode Etik ini berlaku baik di dalam proyek maupun di ruang publik
-ketika seseorang mewakili proyek atau komunitasnya. Contoh dari
-mewakili sebuah proyek atau komunitas termasuk dalam menggunakan alamat email resmi proyek, posting melalui akun media sosial resmi, atau bertindak sebagai orang yang ditunjuk menjadi perwakilan di acara online atau offline. Representasi proyek mungkin selanjutnya didefinisikan dan diklarifikasi oleh pengelola proyek.
+Kode Etik ini berlaku di semua ruang lingkup komunitas, dan juga berlaku ketika
+individu secara resmi mewakili komunitas di ruang lingkup publik.
+Contoh dalam perwakilan komunitas seperti menggunakan alamat surel yang resmi,
+mengirim melalui akun media sosial resmi, atau sebagai
+perwakilan yang ditunjuk pada kegiatan online maupun offline.
 
 ## Penegakan
 
-Kejadian perilaku kasar, pelecehan, atau tidak dapat diterima yang terjadi
-dapat dilaporkan kepada tim inti proyek di [INSERT EMAIL ADDRESS]. Semua keluhan
-akan ditinjau, diselidiki dan akan menghasilkan tanggapan yang dianggap perlu
-dan sesuai dengan keadaan. Tim inti proyek berkewajiban menjaga kerahasiaan pelapor yang berkenaan dengan pelaporan suatu insiden. Rincian lebih lanjut tentang kebijakan penegakan khusus akan dipublikasikan secara terpisah.
+Tindakan kasar, pelecehan, atau perilaku tidak dapat diterima lainnya yang terjadi
+dapat dilaporkan kepada pengelola komunitas di [INSERT EMAIL ADDRESS] untuk
+diselesaikan.
+Semua keluhan akan ditinjau dan diselidiki secara tepat dan adil.
 
-Pengelola proyek yang tidak mengikuti atau melaksanakan Kode Etik dengan itikad
-baik mungkin akan menghadapi dampak sementara atau permanen seperti yang ditentukan
-oleh para anggota lain dari pimpinan proyek.
+Semua pengelola komunitas berkewajiban untuk menjaga kerahasiaan dan keamanan
+pelapor suatu insiden.
 
-## Atribut
+## Pedoman Penegakan
 
-Kode Etik ini diadaptasi dari [Contributor Covenant][homepage], versi 1.4,
-tersedia di [https://www.contributor-covenant.org/version/1/4/code-of-conduct.html][version]
+Pengelola komunitas akan mengikuti Pedoman Dampak Komunitas berikut dalam
+menentukan konsekuensi untuk setiap tindakan yang dianggap melanggar dari
+Kode Etik ini:
+
+### 1. Koreksi
+
+**Dampak Komunitas**: Penggunaan bahasa yang tidak pantas atau perilaku lain
+yang dianggap tidak profesional atau tidak pantas dalam komunitas.
+
+**Konsekuensi**: Peringatan tertulis dari pengelola komunitas secara pribadi,
+meliputi penjelasan mengenai pelanggaran dan penjelasan mengapa perilaku itu
+tidak pantas. Permintaan maaf secara publik mungkin akan diminta.
+
+### 2. Peringatan
+
+**Dampak Komunitas**: Suatu pelanggaran melalui insiden tunggal atau
+serangkaian tindakan.
+
+**Konsekuensi**: Peringatan serta konsekuensi bagi yang masih melanggar.
+Tidak ada interaksi dengan orang-orang yang terlibat, termasuk interaksi yang
+tidak diminta dengan mereka yang menegakkan Kode Etik ini, dalam tempo waktu yang
+telah ditentukan. Hal ini juga termasuk menghindari interaksi di ruang
+komunitas serta saluran lainnya seperti media sosial. Melanggar ketentuan ini
+dapat menyebabkan pemblokiran sementara atau permanen.
+
+### 3. Pemblokiran Sementara
+
+**Dampak Komunitas**: Suatu pelanggaran serius terhadap standar komunitas,
+termasuk perilaku tidak pantas yang berkelanjutan.
+
+**Konsekuensi**: Pemblokiran sementara dari segala bentuk interaksi atau
+komunikasi publik dengan komunitas untuk jangka waktu tertentu. Tidak ada
+interaksi publik atau pribadi dengan orang-orang yang terlibat, termasuk
+interaksi yang tidak diminta dengan mereka yang menegakkan Kode Etik ini,
+diizinkan selama periode ini. Melanggar ketentuan ini dapat menyebabkan
+pemblokiran permanen.
+
+### 4. Pemblokiran Permanen
+
+**Dampak Komunitas**: Menunjukkan pola pelanggar standar komunitas, termasuk
+perilaku tidak pantas yang berlanjut, pelecehan terhadap seorang individu,
+atau agresi atau penghinaan terhadap kasta dari individu tertentu.
+
+**Konsekuensi**: Pemblokiran permanen dari segala bentuk interaksi publik dalam
+komunitas.
+
+## Atribusi
+
+Kode Etik ini diadaptasi dari [Contributor Covenant][homepage], versi 2.0,
+tersedia di
+https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
+
+Pedoman Dampak Komunitas terinsipirasi dari [Tahapan Pelaksanaan Kode Etik
+Mozilla](https://github.com/mozilla/diversity).
 
 [homepage]: https://www.contributor-covenant.org
-[version]: https://contributor-covenant.org/version/1/4/
+
+Untuk jawaban atas pertanyaan umum tentang kode etik ini, lihat FAQ di
+https://www.contributor-covenant.org/faq. Terjemahan dari Kode Etik ini tersedia
+di https://www.contributor-covenant.org/translations.

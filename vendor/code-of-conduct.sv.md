@@ -1,7 +1,3 @@
-+++
-version = "1.4"
-aliases = ["/version/1/4/sv"]
-+++
 
 # Medarbetarförbundets Uppförandekod
 
@@ -61,7 +57,7 @@ klargöras av projektansvariga.
 ## Upprätthållande
 
 Fall av kränkande, trakasserande eller på annat sätt oacceptabelt beteende kan
-rapporteras genom att kontakta projektgruppen på [INFOGA EPOSTADRESS]. Alla
+rapporteras genom att kontakta projektgruppen på [INSERT EMAIL ADDRESS]. Alla
 klagomål kommer att granskas och undersökas och resultera i ett svar som anses
 nödvändig och lämplig under omständigheterna. Projektgruppen är skyldig att
 upprätthålla sekretess med avseende på rapportören av en incident. Ytterligare

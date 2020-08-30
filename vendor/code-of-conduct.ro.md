@@ -1,16 +1,12 @@
-+++
-version = "1.4"
-aliases = ["/version/1/4/ro"]
-+++
 
 # Codul de Conduită al Contribuitorului
 
-## Angajamentul nostru 
+## Angajamentul nostru
 
 În scopul de a menține un mediu deschis și primitor, noi, în rolul de contribuitori
 și întreținători ne angajăm ca participarea în proiectul și comunitatatea noastră
-să fie o experiență lipsită de neplăceri pentru toată lumea, indiferent de vârstă, talie, 
-dizabilitate, etnie, identitate sau exprimare a genului, nivel de experiență, educație, 
+să fie o experiență lipsită de neplăceri pentru toată lumea, indiferent de vârstă, talie,
+dizabilitate, etnie, identitate sau exprimare a genului, nivel de experiență, educație,
 statut socio-economic, naționalitate, aspect fizic, rasă, religie, identitate sau orientare sexuală.
 
 ## Standardele noastre
@@ -52,12 +48,12 @@ când o persoană reprezintă proiectul sau comunitatea sa. Exemple de reprezent
 proiectului sau a comunității includ folosirea unei adrese oficiale de email a
 proiectului, postarea pe rețele de socializare folosind un cont oficial sau participarea
 la un eveniment 'online' sau 'offline' ca reprezentant delegat. Reprezentarea
-unui proiect poate fi clarificată în detaliu de către întreținătorii proiectului.                                 
+unui proiect poate fi clarificată în detaliu de către întreținătorii proiectului.
 
 ## Condiții de aplicare
 
 Acțiunile abuzive, hărțuitoare sau considerate neadecvate pot fi raportate prin
-contactarea echipei proiectului la adresa [INSERAȚI ADRESA DE EMAIL]. Toate plângerile
+contactarea echipei proiectului la adresa [INSERT EMAIL ADDRESS]. Toate plângerile
 vor fi analizate și investigate și vor rezulta într-un răspuns care este necesar și
 adecvat circumstanțelor. Echipa proiectului este obligată la păstrarea confidentialității
 persoanei care raportează un incident. Mai multe criterii și condiții de aplicare pot fi
@@ -65,11 +61,11 @@ specificate separat.
 
 Întreținătorii proiectului care nu respectă și nu aplică Codul de Conduită în bună
 credință, ar putea suferi repercusiuni temporare sau permanente determinate de către
-alți membri din conducerea proiectului.                       
+alți membri din conducerea proiectului.
 
 ## Afiliere
 
-Acest Cod de Conduită este adaptat conform [Codului de Conduită al Contribuitorului]  
+Acest Cod de Conduită este adaptat conform [Codului de Conduită al Contribuitorului]
 [homepage], versiunea 1.4, disponibil la https://www.contributor-covenant.org/ro/version/1/4/code-of-conduct.html
 
 [homepage]: https://www.contributor-covenant.org

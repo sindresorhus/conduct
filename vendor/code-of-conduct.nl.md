@@ -1,7 +1,3 @@
-+++
-version = "1.4"
-aliases = ["/version/1/4/nl"]
-+++
 
 # Gedragscode voor Bijdragers
 
@@ -59,7 +55,7 @@ van een project mag verder worden gedefinieerd door de projectonderhouders.
 ## Handhaving
 
 Instanties van beledigend, storend of anders niet aanvaardbaar gedrag mag worden
-gerapporteerd aan het project team op [VUL EMAIL ADRES IN]. Alle klachten zullen
+gerapporteerd aan het project team op [INSERT EMAIL ADDRESS]. Alle klachten zullen
 besproken en onderzocht worden en zullen resulteren in een antwoord dat nodig en
 passend wordt geacht al naargelang de situatie. Het project team is verplicht om
 vertrouwelijkheid te garanderen met betrekking tot de klager. Verdere details van
@@ -75,3 +71,4 @@ Deze Gedragscode is een  aangepaste versie van  de [Contributor Covenant][homepa
 versie 1.4, beschikbaar op https://www.contributor-covenant.org/nl/version/1/4/code-of-conduct.html
 
 [homepage]: https://www.contributor-covenant.org
+
