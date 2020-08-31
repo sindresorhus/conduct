@@ -15,7 +15,8 @@ const setLanguage = (language, cwd) => {
 };
 
 const posixJoin = (cwd, file) => {
-	return path.posix.join(...cwd.split(path.sep), file);
+	const temporaryFileLocation = process.platform === 'win32' ? cwd.split(path.sep) : [cwd];
+	return path.posix.join(...temporaryFileLocation, file);
 };
 
 // It's serial as it's affected by the `update` test:

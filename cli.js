@@ -172,7 +172,7 @@ function generate(filepath, email) {
 }
 
 async function init() {
-	const directoryPathParts = flags.directory.split(path.sep);
+	const directoryPathParts = process.platform === 'win32' ? flags.directory.split(path.sep) : [flags.directory];
 	const results = globby.sync([
 		path.posix.join(...directoryPathParts, 'code_of_conduct.*'),
 		path.posix.join(...directoryPathParts, '.github', 'code_of_conduct.*'),
