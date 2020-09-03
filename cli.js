@@ -111,7 +111,7 @@ function findGitConfigEmail() {
 }
 
 async function findEmail(existingSrc) {
-	// Always override with cli flag
+	// Always override with CLI flag
 	if (cli.flags.email) {
 		return cli.flags.email;
 	}
@@ -129,7 +129,7 @@ async function findEmail(existingSrc) {
 		email = config.get('email');
 	}
 
-	// Infer from git
+	// Infer from Git
 	if (!email) {
 		email = findGitConfigEmail();
 	}
