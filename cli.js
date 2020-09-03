@@ -199,7 +199,7 @@ async function init() {
 		return;
 	}
 
-	// Generate New
+	// Generate new
 	const email = await findEmail();
 	generate(filePath, email);
 }
