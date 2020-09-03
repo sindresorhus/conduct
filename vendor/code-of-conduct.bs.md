@@ -1,7 +1,3 @@
-+++
-version = "1.4"
-aliases = ["/version/1/4/bs"]
-+++
 
 # Pakt Saradnika: Kodeks Ponašanja
 
@@ -39,7 +35,7 @@ Ovaj kodeks ponašanja se odnosi na sve projekte i javne prostore gdje pojedinac
 
 ## Primjenjivanje
 
-U slučaju uvredljivog ponašanja, kontaktirajte održavatelje: [E-MAIL ADRESA]
+U slučaju uvredljivog ponašanja, kontaktirajte održavatelje: [INSERT EMAIL ADDRESS]
 
 Svaka žalba će se istraziti i odgovor će biti fer i prikladan za situaciju. Održavatelji projekta su odgovorni održati povjerljivost svake žalbe. Dodatne detalje polisa mogu biti objavljeno odvojeno.
 

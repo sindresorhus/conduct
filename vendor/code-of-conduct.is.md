@@ -1,7 +1,3 @@
-+++
-version = "1.4"
-aliases = ["/version/1/4/is"]
-+++
 
 # Hátternisreglur þátttakenda
 
@@ -59,7 +55,7 @@ verið frekar skilgreint og skýrt af umsjónarfólki verkefnis.
 ## Fullnusta
 
 Tilvik af ofbeldisfullri, áreitni, eða annarskonar óviðunandi hegðunnar geta
-verið tilkynntar með því að hafa samband við verkefnateymi í [NETFANG HÉR].
+verið tilkynntar með því að hafa samband við verkefnateymi í [INSERT EMAIL ADDRESS].
 Allar kvartanir verða yfirfarnar og rannskaðar og munu leiða til viðbragða sem
 eru talin nauðsynleg og viðeigandi fyrir aðstæður. Verkefnateymi er skylt til að
 halda trúnað við þann sem tilkynnir atvik. Frekari upplýsingar

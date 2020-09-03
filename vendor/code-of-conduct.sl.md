@@ -1,7 +1,3 @@
-+++
-version = "1.4"
-aliases = ["/version/1/4/sl"]
-+++
 
 # Kodeks obnašanja zveze sodelavcev
 
@@ -59,7 +55,7 @@ dodatno opredeljena in razjasnjena s strani vzdrževalcev projekta.
 ## Uveljavljanje
 
 Primere zlorabe, nadlegovanja ali drugače nesprejemljivega vedenja se lahko
-sporoči projektni skupini preko [VNESITE NASLOV E-POŠTE]. Vse
+sporoči projektni skupini preko [INSERT EMAIL ADDRESS]. Vse
 pritožbe bodo pregledane in raziskane, na osnovi česar bo izhajal odgovor, katerega
 se smatra kot potrebnega in ustreznega glede na okoliščine. Projektna ekipa je
 dolžna ohraniti zaupnost v zvezi s poročevalcem incidenta.

@@ -58,7 +58,7 @@ const cli = meow(`
 });
 
 function readmeIsUpperCase() {
-	const results = globby.sync('readme.*', {case: false});
+	const results = globby.sync('readme.*', {caseSensitiveMatch: false});
 	if (results.length > 0) {
 		const fileObject = path.parse(results[0]);
 		return fileObject.name.toUpperCase() === fileObject.name;
@@ -101,13 +101,57 @@ function loadLanguages() {
 	return new Set(languages);
 }
 
-function findEmail() {
+function findGitConfigEmail() {
 	let email;
 	try {
 		email = execa.sync('git', ['config', 'user.email']).stdout.trim();
-	} catch (_) {}
+	} catch {}
 
 	return email;
+}
+
+async function findEmail(existingSrc) {
+	// Always override with CLI flag
+	if (cli.flags.email) {
+		return cli.flags.email;
+	}
+
+	let email;
+
+	// Load from existing Code of Conduct
+	if (existingSrc) {
+		const [existingEmail] = [...getEmails(existingSrc)];
+		email = existingEmail;
+	}
+
+	// Check config
+	if (!email) {
+		email = config.get('email');
+	}
+
+	// Infer from Git
+	if (!email) {
+		email = findGitConfigEmail();
+	}
+
+	// Prompt user
+	if (!email && process.stdout.isTTY) {
+		const answers = await inquirer.prompt([{
+			type: 'input',
+			name: 'email',
+			message: 'Couldn\'t infer your email. Please enter your email:',
+			validate: x => x.includes('@')
+		}]);
+		email = answers.email;
+	}
+
+	if (email) {
+		config.set('email', email);
+		return email;
+	}
+
+	console.error(`Run \`${chalk.cyan('conduct --email=your@email.com')}\` once to save your email.`);
+	process.exit(1);
 }
 
 function write(filepath, email, fileToRemove) {
@@ -128,56 +172,36 @@ function generate(filepath, email) {
 }
 
 async function init() {
+	const directoryPathParts = process.platform === 'win32' ? flags.directory.split(path.sep) : [flags.directory];
 	const results = globby.sync([
-		path.posix.join(flags.directory, 'code_of_conduct.*'),
-		path.posix.join(flags.directory, 'code-of-conduct.*'),
-		path.posix.join(flags.directory, '.github', 'code_of_conduct.*'),
-		path.posix.join(flags.directory, '.github', 'code-of-conduct.*')
-	], {nocase: true});
+		path.posix.join(...directoryPathParts, 'code_of_conduct.*'),
+		path.posix.join(...directoryPathParts, '.github', 'code_of_conduct.*'),
+		path.posix.join(...directoryPathParts, 'code-of-conduct.*'),
+		path.posix.join(...directoryPathParts, '.github', 'code-of-conduct.*')
+	], {caseSensitiveMatch: false});
 
 	// Update existing
 	if (results.length > 0) {
 		const [existing] = results;
 		const existingSrc = fs.readFileSync(existing, 'utf8');
-		const [email] = [...getEmails(existingSrc)];
+		const email = await findEmail(existingSrc);
 
 		if (cli.flags.underscore || cli.flags.uppercase) {
 			// If the existing file is different from the
 			// intended file, pass it in for removal
-			write(filePath, cli.flags.email || email, existing !== filePath && existing);
+			write(filePath, email, existing !== filePath && existing);
 		} else {
 			// Otherwise, just update the original
-			write(existing, cli.flags.email || email);
+			write(existing, email);
 		}
 
 		console.log(`${logSymbols.success} Updated your Code of Conduct`);
 		return;
 	}
 
-	if (config.has('email')) {
-		generate(filePath, config.get('email'));
-		return;
-	}
-
-	const email = findEmail();
-	if (email) {
-		config.set('email', email);
-		generate(filePath, email);
-		return;
-	}
-
-	if (process.stdout.isTTY) {
-		const answers = await inquirer.prompt([{
-			type: 'input',
-			name: 'email',
-			message: 'Couldn\'t infer your email. Please enter your email:',
-			validate: x => x.includes('@')
-		}]);
-		generate(filePath, answers.email);
-	} else {
-		console.error(`Run \`${chalk.cyan('conduct --email=your@email.com')}\` once to save your email.`);
-		process.exit(1);
-	}
+	// Generate new
+	const email = await findEmail();
+	generate(filePath, email);
 }
 
 init();
