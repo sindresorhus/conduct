@@ -1,4 +1,4 @@
-# conduct [![Build Status](https://travis-ci.com/sindresorhus/conduct.svg?branch=master)](https://travis-ci.com/sindresorhus/conduct)
+# conduct
 
 > Generate a Code of Conduct for your project - Provided by [Contributor Covenant](https://contributor-covenant.org)
 
