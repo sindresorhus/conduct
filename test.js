@@ -1,18 +1,20 @@
-const fs = require('fs');
-const path = require('path');
-const globby = require('globby');
-const test = require('ava');
-const execa = require('execa');
-const tempy = require('tempy');
+import process from 'node:process';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {globbySync} from 'globby';
+import test from 'ava';
+import execa from 'execa';
+import tempy from 'tempy';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const bin = path.join(__dirname, 'cli.js');
 const fixture = fs.readFileSync(path.join(__dirname, 'fixtures/code-of-conduct.md'), 'utf8');
 const expectedString = fixture.slice(0, 15);
 const expectedStringES = 'Nosotros, como miembros, contribuyentes y administradores';
 
-const setLanguage = (language, cwd) => {
-	return execa(bin, [`--language=${language}`], {cwd});
-};
+const setLanguage = (language, cwd) => execa(bin, [`--language=${language}`], {cwd});
 
 const posixJoin = (cwd, file) => {
 	const temporaryFileLocation = process.platform === 'win32' ? cwd.split(path.sep) : [cwd];
@@ -44,7 +46,7 @@ test('readme filename', async t => {
 	const filepath = path.join(cwd, 'readme.md');
 	fs.writeFileSync(filepath, '');
 	await execa(bin, {cwd});
-	const generatedFile = globby.sync(posixJoin(cwd, 'code-of-conduct.md'))[0];
+	const generatedFile = globbySync(posixJoin(cwd, 'code-of-conduct.md'))[0];
 	t.is(path.parse(generatedFile).base, 'code-of-conduct.md');
 });
 
@@ -53,14 +55,14 @@ test('README filename', async t => {
 	const filepath = path.join(cwd, 'README.md');
 	fs.writeFileSync(filepath, '');
 	await execa(bin, {cwd});
-	const generatedFile = globby.sync(posixJoin(cwd, 'CODE-OF-CONDUCT.md'))[0];
+	const generatedFile = globbySync(posixJoin(cwd, 'CODE-OF-CONDUCT.md'))[0];
 	t.is(path.parse(generatedFile).base, 'CODE-OF-CONDUCT.md');
 });
 
 test('filename --uppercase', async t => {
 	const cwd = tempy.directory();
 	await execa(bin, ['--uppercase'], {cwd});
-	const generatedFile = globby.sync(posixJoin(cwd, 'CODE-OF-CONDUCT.md'))[0];
+	const generatedFile = globbySync(posixJoin(cwd, 'CODE-OF-CONDUCT.md'))[0];
 	t.is(path.parse(generatedFile).base, 'CODE-OF-CONDUCT.md');
 });
 

@@ -20,8 +20,8 @@ tl;dr Having a Code of Conduct is helpful in fostering and enforcing a friendly 
 
 ## Install
 
-```
-$ npm install --global conduct
+```sh
+npm install --global conduct
 ```
 
 ## Usage

@@ -1,21 +1,24 @@
 #!/usr/bin/env node
-'use strict';
-const path = require('path');
-const fs = require('fs');
-const meow = require('meow');
-const inquirer = require('inquirer');
-const globby = require('globby');
-const getEmails = require('get-emails');
-const chalk = require('chalk');
-const Conf = require('conf');
-const execa = require('execa');
-const logSymbols = require('log-symbols');
-const makeDir = require('make-dir');
+import path from 'node:path';
+import process from 'node:process';
+import {fileURLToPath} from 'node:url';
+import fs from 'node:fs';
+import meow from 'meow';
+import inquirer from 'inquirer';
+import {globbySync} from 'globby';
+import getEmails from 'get-emails';
+import chalk from 'chalk';
+import Conf from 'conf';
+import execa from 'execa';
+import logSymbols from 'log-symbols';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config = new Conf({
+	projectName: 'conduct',
 	defaults: {
-		language: 'en'
-	}
+		language: 'en',
+	},
 });
 
 let filename = 'code-of-conduct';
@@ -34,31 +37,32 @@ const cli = meow(`
 	  --language, -l    The language of the Code of Conduct [Default: en]
 	  --directory, -d   The output directory [Default: .]
 `, {
+	importMeta: import.meta,
 	flags: {
 		uppercase: {
 			type: 'boolean',
 			default: false,
-			alias: 'c'
+			alias: 'c',
 		},
 		underscore: {
 			type: 'boolean',
 			default: false,
-			alias: 'u'
+			alias: 'u',
 		},
 		language: {
 			type: 'string',
-			alias: 'l'
+			alias: 'l',
 		},
 		directory: {
 			type: 'string',
 			default: '.',
-			alias: 'd'
-		}
-	}
+			alias: 'd',
+		},
+	},
 });
 
 function readmeIsUpperCase() {
-	const results = globby.sync('readme.*', {caseSensitiveMatch: false});
+	const results = globbySync('readme.*', {caseSensitiveMatch: false});
 	if (results.length > 0) {
 		const fileObject = path.parse(results[0]);
 		return fileObject.name.toUpperCase() === fileObject.name;
@@ -102,12 +106,9 @@ function loadLanguages() {
 }
 
 function findGitConfigEmail() {
-	let email;
 	try {
-		email = execa.sync('git', ['config', 'user.email']).stdout.trim();
+		return execa.sync('git', ['config', 'user.email']).stdout.trim();
 	} catch {}
-
-	return email;
 }
 
 async function findEmail(existingSrc) {
@@ -140,7 +141,7 @@ async function findEmail(existingSrc) {
 			type: 'input',
 			name: 'email',
 			message: 'Couldn\'t infer your email. Please enter your email:',
-			validate: x => x.includes('@')
+			validate: x => x.includes('@'),
 		}]);
 		email = answers.email;
 	}
@@ -156,9 +157,9 @@ async function findEmail(existingSrc) {
 
 function write(filepath, email, fileToRemove) {
 	const target = `vendor/code-of-conduct.${config.get('language')}.md`;
-	const src = fs.readFileSync(path.join(__dirname, target), 'utf8');
-	makeDir.sync(path.dirname(filepath));
-	fs.writeFileSync(filepath, src.replace('[INSERT EMAIL ADDRESS]', email));
+	const source = fs.readFileSync(path.join(__dirname, target), 'utf8');
+	fs.mkdirSync(path.dirname(filepath), {recursive: true});
+	fs.writeFileSync(filepath, source.replace('[INSERT EMAIL ADDRESS]', email));
 
 	if (fileToRemove) {
 		fs.unlinkSync(fileToRemove);
@@ -173,11 +174,11 @@ function generate(filepath, email) {
 
 async function init() {
 	const directoryPathParts = process.platform === 'win32' ? flags.directory.split(path.sep) : [flags.directory];
-	const results = globby.sync([
+	const results = globbySync([
 		path.posix.join(...directoryPathParts, 'code_of_conduct.*'),
 		path.posix.join(...directoryPathParts, '.github', 'code_of_conduct.*'),
 		path.posix.join(...directoryPathParts, 'code-of-conduct.*'),
-		path.posix.join(...directoryPathParts, '.github', 'code-of-conduct.*')
+		path.posix.join(...directoryPathParts, '.github', 'code-of-conduct.*'),
 	], {caseSensitiveMatch: false});
 
 	// Update existing
